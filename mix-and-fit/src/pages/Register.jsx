@@ -22,7 +22,7 @@ function Register() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  async function handleSubmit(event) {
+   async function handleSubmit(event) {
     event.preventDefault();
     setError("");
     try {
@@ -38,7 +38,7 @@ function Register() {
       try {
         await sendWelcomeEmail(username, email);
       } catch (e) {
-        // the welcome email is a bonus, so don't block registration if it fails
+        console.error("Welcome email failed:", e);
       }
 
       navigate("/");

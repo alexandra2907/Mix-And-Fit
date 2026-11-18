@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { sendPasswordResetEmail } from "firebase/auth";
+import { sendResetLink } from "../authLinks";
 import { Link } from "react-router-dom";
-import { auth } from "../firebase";
+
 
 function ForgotPassword() {
   const [email, setEmail] = useState("");
@@ -13,7 +13,7 @@ function ForgotPassword() {
     setMessage("");
     setError("");
     try {
-      await sendPasswordResetEmail(auth, email);
+      await sendResetLink(email);
       setMessage(
         "If an account exists for this email, a reset link is on its way. Check your spam folder too."
       );
