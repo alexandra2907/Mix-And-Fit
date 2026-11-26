@@ -31,7 +31,7 @@ function Register() {
 
       try {
         await sendEmailVerification(result.user);
-      } catch (e) {
+      } catch  {
         // the account exists, so don't block registration if this email fails
       }
 

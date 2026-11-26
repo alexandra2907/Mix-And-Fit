@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useMemo } from "react";
 
 const MAX_MB = 5;
 
@@ -8,18 +8,16 @@ function PhotoPicker({ file, onChange, onError }) {
   const videoRef = useRef(null);
   const streamRef = useRef(null);
   const [cameraOpen, setCameraOpen] = useState(false);
-  const [previewUrl, setPreviewUrl] = useState(null);
+  
 
   // Small preview of the chosen photo
-  useEffect(() => {
-    if (!file) {
-      setPreviewUrl(null);
-      return;
-    }
-    const url = URL.createObjectURL(file);
-    setPreviewUrl(url);
-    return () => URL.revokeObjectURL(url);
-  }, [file]);
+const previewUrl = useMemo(() => (file ? URL.createObjectURL(file) : null), [file]);
+
+useEffect(() => {
+  return () => {
+    if (previewUrl) URL.revokeObjectURL(previewUrl);
+  };
+}, [previewUrl]);
 
   // Show the live camera picture once the video element exists
   useEffect(() => {
@@ -69,7 +67,7 @@ function PhotoPicker({ file, onChange, onError }) {
       });
       streamRef.current = stream;
       setCameraOpen(true);
-    } catch (err) {
+    } catch  {
       onError("Could not open the camera. Check that you allowed camera access.");
     }
   }
