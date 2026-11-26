@@ -23,7 +23,7 @@ function Login() {
       await signInWithEmailAndPassword(auth, email, password);
       clearNotice();
       navigate("/");
-    } catch (err) {
+    } catch {
       setError("Wrong email or password.");
     }
   }
@@ -36,7 +36,7 @@ function Login() {
       if (info && info.isNewUser) {
         try {
           await sendWelcomeEmail(result.user.displayName || "there", result.user.email);
-        } catch (e) {
+        } catch  {
           // ignore: the welcome email is a bonus
         }
       }

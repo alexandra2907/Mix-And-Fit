@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useEffect, useState } from "react";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { db } from "./firebase";
@@ -17,7 +18,7 @@ function readCache() {
   try {
     const saved = JSON.parse(localStorage.getItem(CACHE_KEY));
     return { ...DEFAULTS, ...(saved || {}) };
-  } catch (err) {
+  } catch  {
     return DEFAULTS;
   }
 }
@@ -25,7 +26,7 @@ function readCache() {
 function writeCache(value) {
   try {
     localStorage.setItem(CACHE_KEY, JSON.stringify(value));
-  } catch (err) {
+  } catch  {
     // storage not available: preferences still work for this visit
   }
 }

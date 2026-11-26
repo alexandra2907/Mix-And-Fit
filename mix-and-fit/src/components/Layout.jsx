@@ -19,7 +19,7 @@ function Layout() {
       try {
         await user.reload();
         if (user.emailVerified) setVerified(true);
-      } catch (err) {
+      } catch {
         // network problem: try again at the next check
       }
     }
@@ -36,7 +36,7 @@ function Layout() {
     try {
       await sendEmailVerification(user);
       setInfo("Verification email sent again.");
-    } catch (err) {
+    } catch  {
       setInfo("Please wait a few minutes before asking again.");
     }
   }

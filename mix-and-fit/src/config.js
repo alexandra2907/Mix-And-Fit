@@ -9,6 +9,14 @@ export const SOURCES = [
   "Other",
 ];
 
+export const OUTFIT_CATEGORIES = [
+    "Casual",
+  "Night out",
+  "Work",
+  "Sport",
+  "Formal"
+];
+
 export function formatPrice(value) {
   return value.toFixed(2) + " " + CURRENCY;
 }

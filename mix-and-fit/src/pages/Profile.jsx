@@ -5,7 +5,7 @@ import {
   updatePassword,
   updateProfile,
 } from "firebase/auth";
-import { auth } from "../firebase";
+
 import { useAuth } from "../AuthContext";
 import { usePreferences, ACCENTS } from "../PreferencesContext";
 import { sendResetLink, sendEmailChangeLink } from "../authLinks";
@@ -70,7 +70,7 @@ function Profile() {
     try {
       const credential = EmailAuthProvider.credential(user.email, emailPassword);
       await reauthenticateWithCredential(user, credential);
-      await verifyBeforeUpdateEmail(user, target);
+      await sendEmailChangeLink(user, target);
       setEmailMsg(
         "We sent a confirmation link to " + target +
           ". Your email changes after you click it, and you may have to log in again."
@@ -111,7 +111,7 @@ function Profile() {
     setPwMsg("");
     setPwErr("");
     try {
-      await sendPasswordResetEmail(auth, user.email);
+      await sendResetLink(user.email);
       setPwMsg("A reset link was sent to " + user.email + ".");
     } catch (err) {
       setPwErr(friendlyError(err.code));
