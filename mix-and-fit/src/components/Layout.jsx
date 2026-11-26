@@ -48,7 +48,7 @@ function Layout() {
         <nav className="nav">
           <NavLink to="/" end>Home</NavLink>
           <NavLink to="/closet">My closet</NavLink>
-          <NavLink to="/outfits">Outfits</NavLink>
+          <NavLink to="/outfits"> My outfits</NavLink>
         </nav>
         <div className="topbar-right">
             <Link to="/profile" className="profile-link">
