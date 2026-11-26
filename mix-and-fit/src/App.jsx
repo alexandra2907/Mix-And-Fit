@@ -8,6 +8,7 @@ import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Closet from "./pages/Closet";
 import Profile from "./pages/Profile";
+import Outfits from "./pages/Outfits";
 
 function ProtectedRoute({ children }) {
   const { user, loading } = useAuth();
@@ -34,6 +35,7 @@ function App() {
             >
               <Route path="/" element={<Home />} />
               <Route path="/closet" element={<Closet />} />
+              <Route path="/outfits" element={<Outfits />} />
               <Route path="/profile" element={<Profile />} />
             </Route>
           </Routes>
